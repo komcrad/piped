@@ -41,6 +41,8 @@
 (defn rand-msgs []
   (take 10 (repeatedly rand-msg)))
 
+(def client (aws/client {:api :sqs}))
+
 (comment
   (map #(send-message-batch client queue-url %)
        (take 5000 (repeatedly rand-msgs)))
